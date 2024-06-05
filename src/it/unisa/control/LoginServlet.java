@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import it.unisa.model.*;
 
 /**
@@ -32,8 +35,11 @@ public class LoginServlet extends HttpServlet {
 		{	    
 
 		     UserBean user = new UserBean();
+		     MessageDigest md = MessageDigest.getInstance("SHA-512");
+		     
+		     
 		     user.setUsername(request.getParameter("un"));
-		     user.setPassword(request.getParameter("pw"));
+		     user.setPassword(Arrays.toString(md.digest(request.getParameter("pw").getBytes())));
 		     user = usDao.doRetrieve(request.getParameter("un"),request.getParameter("pw"));
 			   		    
 		    
@@ -56,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 		} 
 				
 				
-		catch(SQLException e) {
+		catch(SQLException | NoSuchAlgorithmException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
 		  }

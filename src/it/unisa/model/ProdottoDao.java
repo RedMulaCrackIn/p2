@@ -87,7 +87,8 @@ public class ProdottoDao implements ProdottoDaoInterfaccia{
 
 			ResultSet rs = preparedStatement.executeQuery();
 
-			while (rs.next()) {
+			while (rs.next()) 
+			{
 				bean.setIdProdotto(rs.getInt("ID_PRODOTTO"));
 				bean.setNome(rs.getString("NOME"));
 				bean.setDescrizione(rs.getString("DESCRIZIONE"));
@@ -154,6 +155,7 @@ public class ProdottoDao implements ProdottoDaoInterfaccia{
 		String selectSQL = "SELECT * FROM " + ProdottoDao.TABLE_NAME;
 
 		if (order != null && !order.equals("")) {
+			
 			selectSQL += " ORDER BY ?";
 		}
 

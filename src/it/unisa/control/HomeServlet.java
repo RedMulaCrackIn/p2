@@ -27,7 +27,7 @@ public class HomeServlet extends HttpServlet {
 		ProdottoDao dao = new ProdottoDao();
 		
 		ArrayList<ArrayList<ProdottoBean>> categorie = new ArrayList<>();
-		String redirectedPage = request.getParameter("page");
+		
 		
 		try {
 			ArrayList<ProdottoBean> PS5 = dao.doRetrieveByPiattaforma("PlayStation 5");
@@ -43,9 +43,7 @@ public class HomeServlet extends HttpServlet {
 			categorie.add(Xone);
 
 			request.getSession().setAttribute("categorie", categorie);
-			
-
-			  
+						  
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
