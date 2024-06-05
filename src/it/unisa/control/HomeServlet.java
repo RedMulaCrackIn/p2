@@ -45,13 +45,11 @@ public class HomeServlet extends HttpServlet {
 			request.getSession().setAttribute("categorie", categorie);
 			
 
-			
+			  
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/" + redirectedPage);
-		dispatcher.forward(request, response);
+		request.getRequestDispatcher("Home.jsp").forward(request, response);
 	}
 
 
